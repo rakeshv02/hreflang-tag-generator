@@ -336,22 +336,26 @@ function generate(){
   if(includeXDef && defaultUrl) allEntries.push({lang:'x-default', url:defaultUrl});
   allEntries = allEntries.concat(rows);
 
-  // --- HTML output (displayed escaped, copied raw) ---
+  // --- HTML output ---
+  // escAttr used on every user-supplied value so output is valid HTML attribute syntax.
+  // URLs containing & become &amp;, " becomes &quot;, so pasting into <head> is safe.
   var htmlLines = allEntries.map(function(e){
-    return '<link rel="alternate" hreflang="'+e.lang+'" href="'+e.url+'" />';
+    return '<link rel="alternate" hreflang="'+escAttr(e.lang)+'" href="'+escAttr(e.url)+'" />';
   });
   var htmlRaw = htmlLines.join('\n');
 
-  // Display: escape for text-node insertion
+  // Display via textContent — shows the escaped string literally (correct, that IS what to paste)
   document.getElementById('htmlOutput').textContent = htmlRaw;
 
   // --- XML output ---
+  // XML attribute values: same escaping rules — & → &amp;, " → &quot;, < → &lt;, > → &gt;
+  var firstLoc = escAttr((includeXDef && defaultUrl) || rows[0].url);
   var xmlLines = allEntries.map(function(e){
-    return '  <xhtml:link\n     rel="alternate"\n     hreflang="'+e.lang+'"\n     href="'+e.url+'"\n  />';
+    return '  <xhtml:link\n     rel="alternate"\n     hreflang="'+escAttr(e.lang)+'"\n     href="'+escAttr(e.url)+'"\n  />';
   });
   var xmlRaw = '<!-- Add inside each <url> block in your sitemap. Repeat for every language variant. -->\n'+
     '<!-- Also declare the namespace on <urlset>: xmlns:xhtml="http://www.w3.org/1999/xhtml" -->\n\n'+
-    '<url>\n  <loc>'+((includeXDef&&defaultUrl)||rows[0].url)+'</loc>\n'+
+    '<url>\n  <loc>'+firstLoc+'</loc>\n'+
     xmlLines.join('\n')+'\n</url>';
 
   document.getElementById('xmlOutput').textContent = xmlRaw;
