@@ -244,7 +244,106 @@ ins.adsbygoogle,.ad-banner iframe,.ad-slot iframe,.ad-container iframe{visibilit
 <div>Free, private, browser-based tools. No sign-up, no tracking.</div>
 <div style="margin-top:6px"><a href="https://tabutility.com" style="color:#818cf8;font-weight:600;text-decoration:none">All Tools</a> · <a href="https://tabutility.com/blog/" style="color:#94a3b8;text-decoration:none">Blog</a> · <a href="https://tabutility.com/about/" style="color:#94a3b8;text-decoration:none">About</a> · <a href="https://tabutility.com/privacy-policy/" style="color:#94a3b8;text-decoration:none">Privacy</a> · <a href="https://tabutility.com/contact/" style="color:#94a3b8;text-decoration:none">Contact</a></div>
 <div style="margin-top:6px;color:#64748b">© 2026 Tabutility</div>
-</footer>
+
+  <section id="seo-content" style="background:#1a1a2e;color:#e2e8f0;padding:60px 20px;margin-top:40px;border-top:1px solid #2d3748;">
+    <div style="max-width:860px;margin:0 auto;font-family:system-ui,-apple-system,sans-serif;line-height:1.7;">
+      <h2 style="font-size:2rem;font-weight:700;color:#f1f5f9;margin-bottom:24px;">How to Use the Hreflang Tag Generator</h2>
+      <p style="margin-bottom:16px;color:#cbd5e1;">The Hreflang Tag Generator creates paste-ready HTML hreflang link tags and XML sitemap entries for international and multilingual SEO. Hreflang signals tell Google which language and regional version of a page to show to users in different countries and languages.</p>
+      <p style="margin-bottom:16px;color:#cbd5e1;">Add your page variants by specifying the URL, language code (ISO 639-1, e.g. 'en'), and optional country code (ISO 3166-1 alpha-2, e.g. 'GB'). The generator produces the correct HTML link tags and XML sitemap format for all variants, including the required x-default tag.</p>
+      <p style="margin-bottom:16px;color:#cbd5e1;">The most common hreflang mistake is failing to implement return links: every variant must reference every other variant, including itself. If page A in English references page B in French, page B must also reference page A. One-directional hreflang is invalid and may cause the whole set to be ignored by Google.</p>
+
+      <div style="background:#0f172a;border:1px solid #334155;border-radius:12px;padding:28px;margin:32px 0;">
+        <h3 style="font-size:1.2rem;font-weight:600;color:#f1f5f9;margin-bottom:16px;">📊 Worked Example</h3>
+        <p style="color:#94a3b8;margin:0 0 12px;">English/French/Spanish site with region variants — generated tags for the English page:</p>
+        <pre style="background:#0a0e1a;padding:12px;border-radius:8px;font-size:0.75rem;color:#94a3b8;overflow:auto;">&lt;link rel="alternate" hreflang="en-gb" href="https://example.com/en-gb/page" /&gt;
+&lt;link rel="alternate" hreflang="en-us" href="https://example.com/en-us/page" /&gt;
+&lt;link rel="alternate" hreflang="fr" href="https://example.com/fr/page" /&gt;
+&lt;link rel="alternate" hreflang="es" href="https://example.com/es/page" /&gt;
+&lt;link rel="alternate" hreflang="x-default" href="https://example.com/page" /&gt;</pre>
+      </div>
+
+      <h3 style="font-size:1.4rem;font-weight:600;color:#f1f5f9;margin:32px 0 16px;">Common Use Cases</h3>
+      <ul style="list-style:none;padding:0;margin:0 0 32px;">
+        <li style="padding:8px 0;border-bottom:1px solid #1e293b;color:#cbd5e1;">✅ Setting up hreflang for a multilingual website</li>
+        <li style="padding:8px 0;border-bottom:1px solid #1e293b;color:#cbd5e1;">✅ Creating hreflang tags for regional variants (en-US vs en-GB)</li>
+        <li style="padding:8px 0;border-bottom:1px solid #1e293b;color:#cbd5e1;">✅ Generating XML sitemap hreflang entries</li>
+        <li style="padding:8px 0;border-bottom:1px solid #1e293b;color:#cbd5e1;">✅ Verifying complete hreflang tag sets before deploying</li>
+        <li style="padding:8px 0;border-bottom:1px solid #1e293b;color:#cbd5e1;">✅ Adding hreflang to help Google select the right page for each country</li>
+        <li style="padding:8px 0;border-bottom:1px solid #1e293b;color:#cbd5e1;">✅ Fixing 'missing return tags' identified in a Search Console audit</li>
+      </ul>
+
+      <h3 style="font-size:1.4rem;font-weight:600;color:#f1f5f9;margin:32px 0 24px;">Frequently Asked Questions</h3>
+      <div style="margin-bottom:24px;">
+        <h4 style="font-size:1rem;font-weight:600;color:#f1f5f9;margin-bottom:8px;">What is hreflang and when do I need it?</h4>
+        <p style="color:#cbd5e1;margin:0;">Hreflang is an HTML attribute that tells Google which language and region a page is intended for, and points to alternate versions for other languages/regions. You need it when: you have the same content in multiple languages, you have region-specific content (e.g. en-US vs en-GB), or you're serving different prices/products by country.</p>
+      </div>
+      <div style="margin-bottom:24px;">
+        <h4 style="font-size:1rem;font-weight:600;color:#f1f5f9;margin-bottom:8px;">What is the x-default hreflang tag?</h4>
+        <p style="color:#cbd5e1;margin:0;">The x-default tag designates the fallback page for users who don't match any specific language/region variant. It's typically the international homepage or the primary language version. Google serves this page to users in countries not explicitly targeted by other hreflang tags. It should always be included in your hreflang set.</p>
+      </div>
+      <div style="margin-bottom:24px;">
+        <h4 style="font-size:1rem;font-weight:600;color:#f1f5f9;margin-bottom:8px;">Can hreflang be implemented in HTTP headers instead of HTML?</h4>
+        <p style="color:#cbd5e1;margin:0;">Yes. For non-HTML content (PDFs) or if you prefer server-level implementation, you can add hreflang via HTTP Link headers. The syntax is: Link: <url1>; rel='alternate'; hreflang='en'. This is less common than HTML implementation but equally valid. Avoid duplicating hreflang in both HTML and HTTP headers for the same page.</p>
+      </div>
+      <div style="margin-bottom:24px;">
+        <h4 style="font-size:1rem;font-weight:600;color:#f1f5f9;margin-bottom:8px;">Should I use hreflang for pages with different currency but same language?</h4>
+        <p style="color:#cbd5e1;margin:0;">Yes. If you have an English page for UK visitors (GBP prices) and an English page for US visitors (USD prices), use hreflang='en-gb' and hreflang='en-us' to ensure Google shows the right version to each audience. Without hreflang, Google may show a US visitor the UK-priced page or vice versa.</p>
+      </div>
+      <div style="margin-bottom:24px;">
+        <h4 style="font-size:1rem;font-weight:600;color:#f1f5f9;margin-bottom:8px;">How do I confirm hreflang is working correctly?</h4>
+        <p style="color:#cbd5e1;margin:0;">Use Google Search Console: go to Index > Coverage and check for hreflang errors. The International Targeting report shows configured hreflang tags. Use Google's URL Inspection tool to see which alternate pages Google has found. Our Hreflang Checker tool fetches a live URL and validates all hreflang annotations including return links.</p>
+      </div>
+    </div>
+  </section>
+  <script type="application/ld+json">
+  {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "What is hreflang and when do I need it?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Hreflang is an HTML attribute that tells Google which language and region a page is intended for, and points to alternate versions for other languages/regions. You need it when: you have the same content in multiple languages, you have region-specific content (e.g. en-US vs en-GB), or you're serving different prices/products by country."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What is the x-default hreflang tag?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "The x-default tag designates the fallback page for users who don't match any specific language/region variant. It's typically the international homepage or the primary language version. Google serves this page to users in countries not explicitly targeted by other hreflang tags. It should always be included in your hreflang set."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Can hreflang be implemented in HTTP headers instead of HTML?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes. For non-HTML content (PDFs) or if you prefer server-level implementation, you can add hreflang via HTTP Link headers. The syntax is: Link: <url1>; rel='alternate'; hreflang='en'. This is less common than HTML implementation but equally valid. Avoid duplicating hreflang in both HTML and HTTP headers for the same page."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Should I use hreflang for pages with different currency but same language?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes. If you have an English page for UK visitors (GBP prices) and an English page for US visitors (USD prices), use hreflang='en-gb' and hreflang='en-us' to ensure Google shows the right version to each audience. Without hreflang, Google may show a US visitor the UK-priced page or vice versa."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How do I confirm hreflang is working correctly?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Use Google Search Console: go to Index > Coverage and check for hreflang errors. The International Targeting report shows configured hreflang tags. Use Google's URL Inspection tool to see which alternate pages Google has found. Our Hreflang Checker tool fetches a live URL and validates all hreflang annotations including return links."
+      }
+    }
+  ]
+}
+  </script>
+  </footer>
 
 <script>
 // ---- Escaping helpers ----
